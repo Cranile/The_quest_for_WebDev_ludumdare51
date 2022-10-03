@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Stevia Sphere - Doors to Dreams - Sleeping Forest (single) - 01 Doors to Dreams.mp3-de9b3e9b7b21f6c2f0b0f16409358545.mp3str"
+
+[deps]
+
+source_file="res://sounds/Stevia Sphere - Doors to Dreams - Sleeping Forest (single) - 01 Doors to Dreams.mp3"
+dest_files=[ "res://.import/Stevia Sphere - Doors to Dreams - Sleeping Forest (single) - 01 Doors to Dreams.mp3-de9b3e9b7b21f6c2f0b0f16409358545.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

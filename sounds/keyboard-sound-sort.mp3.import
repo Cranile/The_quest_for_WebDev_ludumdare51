@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/keyboard-sound-sort.mp3-1c7823735b83609694840f4f3ab425f5.mp3str"
+
+[deps]
+
+source_file="res://sounds/keyboard-sound-sort.mp3"
+dest_files=[ "res://.import/keyboard-sound-sort.mp3-1c7823735b83609694840f4f3ab425f5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

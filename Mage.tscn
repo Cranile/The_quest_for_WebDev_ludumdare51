@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://art/mage_default.png" type="Texture" id=1]
+[ext_resource path="res://art/mage_default2.png" type="Texture" id=2]
+[ext_resource path="res://art/mage_talk.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "talk",
+"speed": 4.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 26.5, 40 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "inscreen"
+length = 0.78
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.78 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39, 0.42, 0.45, 0.48, 0.51, 0.54, 0.57, 0.6, 0.63, 0.66, 0.69, 0.72, 0.75 ),
+"transitions": PoolRealArray( 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01 ),
+"update": 0,
+"values": [ 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.78 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 260, 0 ), Vector2( 260, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "offscreen"
+length = 3.0
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.27, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.69, 0.81, 0.93, 1.05, 1.17, 1.29, 1.41, 1.53, 1.65, 1.77, 1.89, 2.01, 2.13, 2.25, 2.37, 2.49, 2.61, 2.73, 2.85, 2.97 ),
+"transitions": PoolRealArray( 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01 ),
+"update": 0,
+"values": [ 0.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0, 0.0, 15.0, 0.0, -15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.57, 2.97 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -6.37745e-06, 0 ), Vector2( 0, 0 ), Vector2( 260, 0 ) ]
+}
+
+[node name="Mage" type="Area2D"]
+position = Vector2( 259, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -6.37745e-06, 0 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+anims/default = SubResource( 4 )
+anims/inscreen = SubResource( 5 )
+anims/offscreen = SubResource( 3 )

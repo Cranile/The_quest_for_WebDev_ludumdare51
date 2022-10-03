@@ -1,0 +1,746 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://HUD.gd" type="Script" id=2]
+[ext_resource path="res://Mage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/codeSnippets/code2.png" type="Texture" id=4]
+[ext_resource path="res://art/codeSnippets/code3.png" type="Texture" id=5]
+[ext_resource path="res://art/codeSnippets/code1.png" type="Texture" id=6]
+[ext_resource path="res://puzzleMain.gd" type="Script" id=7]
+[ext_resource path="res://art/placeholder.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=4]
+size = 26
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=22]
+resource_name = "highlight"
+length = 2.4
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath("codeContainer/one/bg:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.06, 0.36, 0.63, 0.9, 1.17, 1.44, 1.68, 1.95, 2.37 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.905882, 0.905882, 0.905882, 1 ), Color( 0.65098, 0.941176, 0, 1 ), Color( 0.905882, 0.905882, 0.905882, 1 ), Color( 0.65098, 0.941176, 0, 1 ), Color( 0.905882, 0.905882, 0.905882, 1 ), Color( 0.65098, 0.941176, 0, 1 ), Color( 0.905882, 0.905882, 0.905882, 1 ), Color( 0.65098, 0.941176, 0, 1 ), Color( 0.905882, 0.905882, 0.905882, 1 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "maximize"
+length = 0.5
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.48 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "minimize"
+length = 0.5
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "fadein"
+length = 0.3
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.27 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.27 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.278431 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.27 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.05, 0.05 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.27 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -100, 20 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../puzzleMain:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.27 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "fadeout"
+length = 0.3
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.03, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.06, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.278431 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.03, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.05, 0.05 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.03, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -100, 20 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../puzzleMain:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 26
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=16]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.2, 0.2, 0.2, 1 )
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=21]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=19]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.6, 0.6, 0.6, 0.552941 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="puzzleContainer" type="ReferenceRect" parent="."]
+margin_left = 144.0
+margin_top = 73.0
+margin_right = 640.0
+margin_bottom = 543.0
+
+[node name="puzzleMain" type="ColorRect" parent="puzzleContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+script = ExtResource( 7 )
+
+[node name="Button" type="Button" parent="puzzleContainer/puzzleMain"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -47.0
+margin_top = -95.0
+margin_right = 47.0
+margin_bottom = -57.0
+custom_fonts/font = SubResource( 4 )
+text = "Submit"
+
+[node name="answerCheckContainer" type="ColorRect" parent="puzzleContainer/puzzleMain"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -248.0
+margin_top = -36.0
+margin_right = 248.0
+color = Color( 0, 1, 0.203125, 0 )
+
+[node name="answerCheckLabel" type="Label" parent="puzzleContainer/puzzleMain/answerCheckContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 4.0
+custom_fonts/font = SubResource( 6 )
+valign = 1
+autowrap = true
+
+[node name="topWIndowBar" type="ColorRect" parent="puzzleContainer/puzzleMain"]
+anchor_right = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 35.0
+color = Color( 0, 0, 0.509804, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="puzzleContainer/puzzleMain/topWIndowBar"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -12.0
+margin_right = -4.0
+margin_bottom = 13.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="Label" type="Label" parent="puzzleContainer/puzzleMain/topWIndowBar/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "X"
+align = 1
+valign = 1
+
+[node name="WindowName" type="Label" parent="puzzleContainer/puzzleMain/topWIndowBar"]
+margin_left = 3.0
+margin_right = 127.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 10 )
+text = "Superb text editor"
+align = 1
+valign = 1
+
+[node name="codeContainer" type="ColorRect" parent="puzzleContainer/puzzleMain"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -188.0
+margin_right = -10.0
+margin_bottom = 127.0
+
+[node name="title" type="Label" parent="puzzleContainer/puzzleMain/codeContainer"]
+margin_right = 476.0
+margin_bottom = 100.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 14 )
+align = 1
+valign = 1
+
+[node name="one" type="ReferenceRect" parent="puzzleContainer/puzzleMain/codeContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -215.5
+margin_right = 118.0
+margin_bottom = -0.5
+
+[node name="bg" type="ColorRect" parent="puzzleContainer/puzzleMain/codeContainer/one"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.854902, 0.912941, 0.724706, 1 )
+
+[node name="number" type="Label" parent="puzzleContainer/puzzleMain/codeContainer/one"]
+anchor_right = 1.0
+margin_bottom = 69.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "1"
+align = 1
+
+[node name="code" type="TextureRect" parent="puzzleContainer/puzzleMain/codeContainer/one"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -146.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+
+[node name="codeBtn" type="Button" parent="puzzleContainer/puzzleMain/codeContainer/one"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="two" type="ReferenceRect" parent="puzzleContainer/puzzleMain/codeContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 123.0
+margin_top = -215.5
+margin_right = 233.0
+
+[node name="bg" type="ColorRect" parent="puzzleContainer/puzzleMain/codeContainer/two"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.905882, 0.905882, 0.905882, 1 )
+
+[node name="number" type="Label" parent="puzzleContainer/puzzleMain/codeContainer/two"]
+anchor_right = 1.0
+margin_bottom = 69.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "3"
+align = 1
+
+[node name="code" type="TextureRect" parent="puzzleContainer/puzzleMain/codeContainer/two"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -146.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="codeBtn" type="Button" parent="puzzleContainer/puzzleMain/codeContainer/two"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="three" type="ReferenceRect" parent="puzzleContainer/puzzleMain/codeContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 240.0
+margin_top = -215.5
+margin_right = 350.0
+
+[node name="bg" type="ColorRect" parent="puzzleContainer/puzzleMain/codeContainer/three"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.905882, 0.905882, 0.905882, 1 )
+
+[node name="number" type="Label" parent="puzzleContainer/puzzleMain/codeContainer/three"]
+anchor_right = 1.0
+margin_bottom = 69.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "2"
+align = 1
+
+[node name="code" type="TextureRect" parent="puzzleContainer/puzzleMain/codeContainer/three"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -146.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 4
+
+[node name="codeBtn" type="Button" parent="puzzleContainer/puzzleMain/codeContainer/three"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="four" type="ReferenceRect" parent="puzzleContainer/puzzleMain/codeContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 355.0
+margin_top = -215.5
+margin_right = 465.0
+margin_bottom = 0.5
+
+[node name="bg" type="ColorRect" parent="puzzleContainer/puzzleMain/codeContainer/four"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.905882, 0.905882, 0.905882, 1 )
+
+[node name="number" type="Label" parent="puzzleContainer/puzzleMain/codeContainer/four"]
+anchor_right = 1.0
+margin_bottom = 69.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "4"
+align = 1
+
+[node name="code" type="TextureRect" parent="puzzleContainer/puzzleMain/codeContainer/four"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -146.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 4
+flip_v = true
+
+[node name="codeBtn" type="Button" parent="puzzleContainer/puzzleMain/codeContainer/four"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="puzzleContainer/puzzleMain"]
+anims/highlight = SubResource( 22 )
+anims/maximize = SubResource( 24 )
+anims/minimize = SubResource( 23 )
+
+[node name="puzzlePlaceholder" type="TextureRect" parent="puzzleContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0.278431 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = 20.0
+margin_right = -97.0
+margin_bottom = 26.0
+rect_scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="puzzleContainer/puzzlePlaceholder"]
+anims/default = SubResource( 25 )
+anims/fadein = SubResource( 26 )
+anims/fadeout = SubResource( 27 )
+
+[node name="timer" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -529.0
+margin_top = -1.0
+margin_right = -17.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 1 )
+text = "Time left: 3 Months"
+align = 2
+valign = 1
+
+[node name="milestones" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -480.0
+margin_top = 96.0
+margin_right = -19.0
+margin_bottom = 146.0
+custom_fonts/font = SubResource( 12 )
+text = "Milestones x / x"
+align = 2
+
+[node name="Mage" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1118, 528 )
+scale = Vector2( 3, 3 )
+
+[node name="taskBar" type="ColorRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -47.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="startButtonContainer" type="ColorRect" parent="taskBar"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 8.0
+margin_top = -20.5
+margin_right = 121.0
+margin_bottom = 19.5
+color = Color( 0, 0, 0, 1 )
+
+[node name="StartButtonbg" type="ColorRect" parent="taskBar/startButtonContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="start" type="Label" parent="taskBar/startButtonContainer/StartButtonbg"]
+margin_left = 38.0
+margin_right = 111.0
+margin_bottom = 39.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Start"
+align = 1
+valign = 1
+
+[node name="logoContainer" type="ColorRect" parent="taskBar/startButtonContainer/StartButtonbg"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 37.0
+margin_bottom = 37.0
+color = Color( 1, 1, 1, 0.745098 )
+
+[node name="ColorRect" type="ColorRect" parent="taskBar/startButtonContainer/StartButtonbg/logoContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 18.0
+margin_bottom = 18.0
+color = Color( 0.819608, 0.356863, 0.356863, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="taskBar/startButtonContainer/StartButtonbg/logoContainer"]
+margin_left = 8.0
+margin_top = 9.0
+margin_right = 25.0
+margin_bottom = 26.0
+color = Color( 0.356863, 0.678431, 0.819608, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="taskBar/startButtonContainer/StartButtonbg/logoContainer"]
+margin_left = 17.0
+margin_top = 17.0
+margin_right = 34.0
+margin_bottom = 34.0
+color = Color( 0.85098, 0.847059, 0.580392, 1 )
+
+[node name="popup" type="ColorRect" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 76.0
+margin_top = -331.0
+margin_right = 572.0
+margin_bottom = 140.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="topWIndowBar" type="ColorRect" parent="popup"]
+anchor_right = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 35.0
+color = Color( 0, 0, 0.509804, 1 )
+
+[node name="closepopup" type="Button" parent="popup/topWIndowBar"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -31.0
+margin_top = -11.0
+margin_right = -4.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+text = "X"
+
+[node name="WindowName" type="Label" parent="popup/topWIndowBar"]
+margin_left = 3.0
+margin_right = 127.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 10 )
+text = "Net escaper browser"
+align = 1
+valign = 1
+
+[node name="container" type="ColorRect" parent="popup"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -243.0
+margin_top = -436.0
+margin_right = 243.0
+margin_bottom = -20.0
+
+[node name="ColorRect" type="ColorRect" parent="popup/container"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 480.0
+margin_bottom = 21.0
+color = Color( 0.701961, 0.701961, 0.701961, 1 )
+
+[node name="url" type="Label" parent="popup/container/ColorRect"]
+margin_right = 206.0
+margin_bottom = 17.0
+text = "http://supermegafreegames.downloadnow"
+valign = 1
+
+[node name="title" type="Label" parent="popup/container"]
+margin_left = 10.0
+margin_top = 27.0
+margin_right = 480.0
+margin_bottom = 90.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "DO YOU WANT THE LATEST BESTEST GAMEST ?!?
+OF COURSE YOU DO
+CLICK THE LINK BELOW TO GET THEM ALL!!1!!"
+autowrap = true
+
+[node name="downloadlink" type="Button" parent="popup/container"]
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -68.5
+margin_top = -10.0
+margin_right = 68.5
+margin_bottom = 10.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "DOWNLOAD HERE !"
+
+[node name="mageDialogue" type="ColorRect" parent="."]
+margin_left = 835.0
+margin_top = 240.0
+margin_right = 1035.0
+margin_bottom = 490.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="content" type="Label" parent="mageDialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 21 )
+autowrap = true
+
+[node name="next" type="Button" parent="mageDialogue"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 19 )
+custom_styles/normal = SubResource( 20 )
+text = "Next"
+icon_align = 1
+
+[connection signal="visibility_changed" from="puzzleContainer/puzzleMain" to="puzzleContainer/puzzleMain" method="_on_puzzleMain_visibility_changed"]
+[connection signal="pressed" from="puzzleContainer/puzzleMain/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/one/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "one" ]]
+[connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/two/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "two" ]]
+[connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/three/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "three" ]]
+[connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/four/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "four" ]]
+[connection signal="pressed" from="popup/topWIndowBar/closepopup" to="." method="_on_closepopup_pressed"]
+[connection signal="pressed" from="mageDialogue/next" to="." method="_on_next_pressed"]
