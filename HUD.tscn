@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
@@ -263,6 +263,16 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.6, 0.6, 0.6, 0.552941 )
+
+[sub_resource type="DynamicFont" id=28]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=29]
+
+[sub_resource type="DynamicFont" id=30]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=31]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -617,6 +627,11 @@ margin_right = 34.0
 margin_bottom = 34.0
 color = Color( 0.85098, 0.847059, 0.580392, 1 )
 
+[node name="startbtn" type="Button" parent="taskBar/startButtonContainer/StartButtonbg"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="popup" type="ColorRect" parent="."]
 visible = false
 anchor_top = 0.5
@@ -874,13 +889,65 @@ Achievments:
 * Co creator of the Memeverse"
 autowrap = true
 
+[node name="applications" type="ReferenceRect" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -88.0
+margin_right = 40.0
+margin_bottom = -48.0
+
+[node name="container" type="ColorRect" parent="applications"]
+margin_top = -239.0
+margin_right = 256.0
+margin_bottom = 40.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="ReferenceRect" type="ReferenceRect" parent="applications/container"]
+margin_right = 256.0
+margin_bottom = 40.0
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="applications/container"]
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 80.0
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="applications/container"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -136.0
+margin_top = -79.0
+
+[node name="poweroff" type="Button" parent="applications/container/ReferenceRect3"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -33.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 28 )
+custom_styles/normal = SubResource( 29 )
+text = "Power off"
+
+[node name="restart" type="Button" parent="applications/container/ReferenceRect3"]
+anchor_right = 1.0
+margin_bottom = 35.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+text = "Restart"
+
 [connection signal="visibility_changed" from="puzzleContainer/puzzleMain" to="puzzleContainer/puzzleMain" method="_on_puzzleMain_visibility_changed"]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/one/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "one" ]]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/two/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "two" ]]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/three/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "three" ]]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/four/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "four" ]]
+[connection signal="pressed" from="taskBar/startButtonContainer/StartButtonbg/startbtn" to="." method="_on_startbtn_pressed"]
 [connection signal="pressed" from="popup/topWIndowBar/closepopup" to="." method="_on_closepopup_pressed"]
 [connection signal="pressed" from="help/topWIndowBar/closehelp" to="." method="_on_closehelp_pressed"]
 [connection signal="pressed" from="mageDialogue/next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="cvcontainer/cv/topWIndowBar/closecv" to="." method="_on_closecv_pressed"]
+[connection signal="pressed" from="applications/container/ReferenceRect3/poweroff" to="." method="_on_poweroff_pressed"]
+[connection signal="pressed" from="applications/container/ReferenceRect3/restart" to="." method="_on_restart_pressed"]

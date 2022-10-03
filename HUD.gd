@@ -44,3 +44,15 @@ func _on_closecv_pressed():
 
 func _on_closehelp_pressed():
 	$help.hide()
+
+
+func _on_poweroff_pressed():
+	get_tree().quit()
+
+func _on_restart_pressed():
+	get_tree().reload_current_scene()
+
+func _on_startbtn_pressed():
+	$applications.visible = !$applications.visible
+
+
