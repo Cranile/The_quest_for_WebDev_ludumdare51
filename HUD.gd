@@ -36,3 +36,11 @@ func _on_closepopup_pressed():
 
 func _on_next_pressed():
 	emit_signal("nextDialogue")
+
+
+func _on_closecv_pressed():
+	$cvcontainer.hide()
+
+
+func _on_closehelp_pressed():
+	$help.hide()

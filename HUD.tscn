@@ -707,6 +707,70 @@ margin_bottom = 10.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "DOWNLOAD HERE !"
 
+[node name="help" type="ColorRect" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 669.0
+margin_top = -331.0
+margin_right = 979.0
+margin_bottom = 134.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="topWIndowBar" type="ColorRect" parent="help"]
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -2.0
+margin_bottom = 34.0
+color = Color( 0, 0, 0.509804, 1 )
+
+[node name="closehelp" type="Button" parent="help/topWIndowBar"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -31.0
+margin_top = -11.0
+margin_right = -4.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+text = "X"
+
+[node name="WindowName" type="Label" parent="help/topWIndowBar"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -15.0
+margin_right = 143.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 10 )
+text = "Help"
+valign = 1
+
+[node name="container" type="ColorRect" parent="help"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 38.0
+margin_right = -6.0
+margin_bottom = -5.0
+
+[node name="title" type="Label" parent="help/container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Objective:
+You have to reach the milestone objective.
+Open the notepad by pressing the little blue book on the top left side of the screen
+click in the code snipptes by order of the small number to the bigger number will grant you milestione points.
+Every 10 seconds the milestone will get pushed by 1.
+If a pop up appears close it by pressing the X on the top right."
+autowrap = true
+
 [node name="mageDialogue" type="ColorRect" parent="."]
 margin_left = 835.0
 margin_top = 240.0
@@ -736,6 +800,80 @@ custom_styles/normal = SubResource( 20 )
 text = "Next"
 icon_align = 1
 
+[node name="cvcontainer" type="ReferenceRect" parent="."]
+visible = false
+margin_left = 227.0
+margin_top = 35.0
+margin_right = 780.0
+margin_bottom = 591.0
+
+[node name="cv" type="ColorRect" parent="cvcontainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.764706, 0.764706, 0.764706, 1 )
+
+[node name="topWIndowBar" type="ColorRect" parent="cvcontainer/cv"]
+anchor_right = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 35.0
+color = Color( 0, 0, 0.509804, 1 )
+
+[node name="closecv" type="Button" parent="cvcontainer/cv/topWIndowBar"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -31.0
+margin_top = -11.0
+margin_right = -4.0
+margin_bottom = 13.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+text = "X"
+
+[node name="WindowName" type="Label" parent="cvcontainer/cv/topWIndowBar"]
+margin_left = 3.0
+margin_right = 127.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 10 )
+text = "THE CV"
+align = 1
+valign = 1
+
+[node name="container" type="ColorRect" parent="cvcontainer/cv"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -261.5
+margin_top = -515.0
+margin_right = 259.5
+margin_bottom = -20.0
+
+[node name="title" type="Label" parent="cvcontainer/cv/container"]
+margin_left = 9.0
+margin_top = 5.0
+margin_right = 514.0
+margin_bottom = 488.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "Name : Dade Murphy
+Born: 1977
+
+Experience:
+* 5 years of experience on a programing language from 7 year in the future.
+* Hosted a bunch of Minecraft servers, so Backend god essentially
+
+Achievments: 
+*crashed 1,507 computer systems causing a 7-point drop in the NY stock exchange.
+*Creator of avaJ, did you know that avaJ is installed in more than a bizillion devices?
+* Co creator of the Memeverse"
+autowrap = true
+
 [connection signal="visibility_changed" from="puzzleContainer/puzzleMain" to="puzzleContainer/puzzleMain" method="_on_puzzleMain_visibility_changed"]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/one/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "one" ]]
@@ -743,4 +881,6 @@ icon_align = 1
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/three/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "three" ]]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/codeContainer/four/codeBtn" to="." method="_on_codeBtn_pressed" binds= [ "four" ]]
 [connection signal="pressed" from="popup/topWIndowBar/closepopup" to="." method="_on_closepopup_pressed"]
+[connection signal="pressed" from="help/topWIndowBar/closehelp" to="." method="_on_closehelp_pressed"]
 [connection signal="pressed" from="mageDialogue/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="cvcontainer/cv/topWIndowBar/closecv" to="." method="_on_closecv_pressed"]

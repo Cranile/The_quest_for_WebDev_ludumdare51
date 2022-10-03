@@ -7,7 +7,7 @@ export var timeLeft = time
 export var disablecoding = true;
 
 var currentMilestone = -1
-var maxMilestone = 25
+var maxMilestone = 3
 
 var lastpopup = 0;
 var currentCode = "1234"
@@ -43,7 +43,8 @@ var dialogue2 = [
 	"And close the window. There is a button on the top right, it has a little 'X', can't miss it",
 	". . . What ? Where you expecting me to give you a sword or something?!, go coding already !"
 ]
-var enddialogue = ["No way. . .",
+
+var enddialogue1 = ["No way. . .",
 "You made it. . .",
 "you must be the chosen one",
 "in all of my years of trolling fools with faulty software, obnoxious ads, and absurd DLC costs. . .",
@@ -52,6 +53,12 @@ var enddialogue = ["No way. . .",
 ". . .",
 "Le-let me give you a little something",
 "have this "]
+var enddialogue2 = [
+	"thats the definitive CV, one to rule them all",
+	"it has everything you need",
+	"rockstar developer, checked. 10x developer, checked. ",
+	"10 years of experience on a language that has been out for only 3 . . . checked.",
+	" Senior developer on languages that don't exist. Checked"]
 var tutorialProgress = 0;
 var inDialogue = false;
 var currentDialogue = -1;
@@ -110,6 +117,50 @@ func tutorial2():
 		$HUD/Mage/AnimationPlayer.play("inscreen")
 	pass
 
+func ending():
+	print("ending")
+	if(!inDialogue):
+		toggleChat()
+		inDialogue = true;
+	
+	mageAnim()
+	mageVoice()
+	
+	if(currentDialogue == enddialogue1.size() -1):
+		$HUD/puzzleContainer/puzzlePlaceholder/AnimationPlayer.play("fadeout")
+		disablecoding = false;
+		inDialogue = false;
+		currentDialogue = 0
+		tutorialProgress = 3
+		mageAnim()
+		toggleChat()
+		$ColorRect/Reward.visible = true;
+		$ColorRect/Reward/AnimationPlayer.play("highlight")
+		return;
+	
+	currentDialogue += 1
+	$HUD/mageDialogue/content.text = enddialogue1[currentDialogue]
+
+func ending2():
+	print("ending2")
+	if(!inDialogue):
+		toggleChat()
+		inDialogue = true;
+	
+	mageAnim()
+	mageVoice()
+	
+	if(currentDialogue == enddialogue2.size() -1):
+		disablecoding = false;
+		inDialogue = false;
+		currentDialogue = 0
+		mageAnim()
+		toggleChat()
+		$ColorRect/Reward.visible = true;
+		return;
+	
+	currentDialogue += 1
+	$HUD/mageDialogue/content.text = enddialogue2[currentDialogue]
 func toggleChat():
 	if(!$HUD/mageDialogue.visible):
 		$HUD/mageDialogue.show()
@@ -140,6 +191,7 @@ func checkPuzzle():
 
 func gameOver():
 	$countdown.stop()
+	
 	print("Game Over")
 
 func updateMilestone():
@@ -155,6 +207,8 @@ func updatePrompt():
 
 	if(currentMilestone >= maxMilestone ):
 		print("you win")
+		disablecoding = true;
+		ending()
 		$countdown.stop()
 		return;
 	
@@ -217,8 +271,22 @@ func _on_HUD_nextDialogue():
 		tutorial()
 	elif(tutorialProgress == 1):
 		tutorial2()
+	elif(tutorialProgress == 2):
+		ending()
+	elif(tutorialProgress == 3):
+		ending2()
 
 
 func _on_editorToggle_pressed():
-	$HUD/puzzleContainer/puzzlePlaceholder/AnimationPlayer.play("fadein")
+	if($HUD/puzzleContainer/puzzleMain.visible == false):
+		$HUD/puzzleContainer/puzzlePlaceholder/AnimationPlayer.play("fadein")
 	##$HUD/puzzleContainer/puzzleMain.show()
+
+
+func _on_rewardbtn_pressed():
+	$HUD/cvcontainer.show();
+	ending2()
+
+
+func _on_helpToggle_pressed():
+	$HUD/help.show();
