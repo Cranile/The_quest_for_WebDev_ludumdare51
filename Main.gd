@@ -15,6 +15,15 @@ const numbers = [0,1,2,3,4,5,6,7,8,9,10]
 var sections = ["one","two","three","four"]
 var milestonesUnlocked = false
 var dialogue = [
+	" . . . ",
+	"WHO DARES TO AWAKE THE BLUE MAGE",
+	" . . . ",
+	"Oh, it's you",
+	"I was installed here in your computer as a gift from one of your family/friend/co-worker or associate",
+	"And for the low low price of $99.9 a year* i will be helping you in your endeavors",
+	"Let me see, what this txt says",
+	". . .",
+	"Aha!",
 	"So you want to become a web developer?",
 	"Thats nice!",
 	"But the way to the top is not easy!",
@@ -58,15 +67,28 @@ var enddialogue2 = [
 	"it has everything you need",
 	"rockstar developer, checked. 10x developer, checked. ",
 	"10 years of experience on a language that has been out for only 3 . . . checked.",
-	" Senior developer on languages that don't exist. Checked"]
+	"Senior developer on languages that don't exist. Checked",
+	"Well. . . i hope that you learn a really valuable lesson today",
+	"A lesson about the power of friendship, overcoming your fears . . .",
+	"Patience and perseverance . . .",
+	"Or maybe just clicking squares on the screen in the correct order IDK",
+	"Okay, i will take my leave then",
+	"Imagine i go out with a *Puff*, we ran out budget(and time) for actual VFX"]
 var tutorialProgress = 0;
 var inDialogue = false;
 var currentDialogue = -1;
 
 func _ready():
-	rng.randomize()
-	tutorial()
+	rng.randomize();
+	$musicPlayer/AnimationPlayer.play("start");
+	$HUD/scenetransition/AnimationPlayer.play("fadeout");
 
+func clickHat():
+	$ColorRect/mageHatContainer.hide()
+	$HUD/Mage/AnimationPlayer.play("fadein")
+	$HUD/mageDialogue.show()
+	tutorial();
+	
 
 func tutorial():
 	inDialogue = true;
@@ -290,3 +312,7 @@ func _on_rewardbtn_pressed():
 
 func _on_helpToggle_pressed():
 	$HUD/help.show();
+
+
+func _on_summonMage_pressed():
+	clickHat()

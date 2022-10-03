@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
@@ -33,6 +33,9 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=13]
 size = 30
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=34]
+resource_name = "RESET"
 
 [sub_resource type="Animation" id=22]
 resource_name = "highlight"
@@ -264,6 +267,9 @@ font_data = ExtResource( 1 )
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.6, 0.6, 0.6, 0.552941 )
 
+[sub_resource type="DynamicFont" id=33]
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=28]
 font_data = ExtResource( 1 )
 
@@ -273,6 +279,40 @@ font_data = ExtResource( 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=31]
+
+[sub_resource type="DynamicFont" id=32]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=35]
+resource_name = "RESET"
+
+[sub_resource type="Animation" id=36]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -514,6 +554,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="puzzleContainer/puzzleMain"]
+anims/RESET = SubResource( 34 )
 anims/highlight = SubResource( 22 )
 anims/maximize = SubResource( 24 )
 anims/minimize = SubResource( 23 )
@@ -787,6 +828,7 @@ If a pop up appears close it by pressing the X on the top right."
 autowrap = true
 
 [node name="mageDialogue" type="ColorRect" parent="."]
+visible = false
 margin_left = 835.0
 margin_top = 240.0
 margin_right = 1035.0
@@ -893,31 +935,70 @@ autowrap = true
 visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -88.0
-margin_right = 40.0
+margin_top = -305.0
+margin_right = 213.0
 margin_bottom = -48.0
 
 [node name="container" type="ColorRect" parent="applications"]
-margin_top = -239.0
-margin_right = 256.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.764706, 0.764706, 0.764706, 1 )
 
-[node name="ReferenceRect" type="ReferenceRect" parent="applications/container"]
-margin_right = 256.0
-margin_bottom = 40.0
-
 [node name="ReferenceRect2" type="ReferenceRect" parent="applications/container"]
-margin_top = 40.0
-margin_right = 256.0
-margin_bottom = 80.0
+anchor_right = 1.0
+margin_left = 35.0
+margin_bottom = 28.0
+
+[node name="Label" type="Label" parent="applications/container/ReferenceRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -34.0
+custom_fonts/font = SubResource( 33 )
+text = "Programs"
+valign = 1
+
+[node name="Label2" type="Label" parent="applications/container/ReferenceRect2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 144.0
+margin_right = -5.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 33 )
+text = ">"
+align = 2
+valign = 1
+
+[node name="ReferenceRect4" type="ReferenceRect" parent="applications/container"]
+anchor_right = 1.0
+margin_left = 35.0
+margin_top = 28.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="applications/container/ReferenceRect4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -34.0
+custom_fonts/font = SubResource( 33 )
+text = "Documents"
+valign = 1
+
+[node name="Label2" type="Label" parent="applications/container/ReferenceRect4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 144.0
+margin_right = -5.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 33 )
+text = ">"
+align = 2
+valign = 1
 
 [node name="ReferenceRect3" type="ReferenceRect" parent="applications/container"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -136.0
+margin_left = -178.0
 margin_top = -79.0
 
 [node name="poweroff" type="Button" parent="applications/container/ReferenceRect3"]
@@ -928,7 +1009,7 @@ margin_top = -33.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 28 )
 custom_styles/normal = SubResource( 29 )
-text = "Power off"
+text = "Shut Down..."
 
 [node name="restart" type="Button" parent="applications/container/ReferenceRect3"]
 anchor_right = 1.0
@@ -937,6 +1018,44 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 30 )
 custom_styles/normal = SubResource( 31 )
 text = "Restart"
+
+[node name="sideName" type="ReferenceRect" parent="applications/container"]
+anchor_bottom = 1.0
+margin_right = 32.0
+
+[node name="ColorRect" type="ColorRect" parent="applications/container/sideName"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_bottom = -2.0
+color = Color( 0.564706, 0.564706, 0.564706, 1 )
+
+[node name="Label" type="Label" parent="applications/container/sideName/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 32 )
+text = "9
+5
+
+s
+r
+o
+o
+D"
+align = 1
+valign = 2
+autowrap = true
+
+[node name="scenetransition" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scenetransition"]
+anims/RESET = SubResource( 35 )
+anims/fadeout = SubResource( 36 )
 
 [connection signal="visibility_changed" from="puzzleContainer/puzzleMain" to="puzzleContainer/puzzleMain" method="_on_puzzleMain_visibility_changed"]
 [connection signal="pressed" from="puzzleContainer/puzzleMain/Button" to="." method="_on_Button_pressed"]

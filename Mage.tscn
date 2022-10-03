@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://art/mage_default.png" type="Texture" id=1]
 [ext_resource path="res://art/mage_default2.png" type="Texture" id=2]
@@ -20,6 +20,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 26.5, 40 )
 
+[sub_resource type="Animation" id=6]
+resource_name = "RESET"
+
 [sub_resource type="Animation" id=4]
 resource_name = "default"
 tracks/0/type = "value"
@@ -33,6 +36,36 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -121,10 +154,10 @@ tracks/2/keys = {
 position = Vector2( 259, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -6.37745e-06, 0 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -133,6 +166,9 @@ shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
+anims/RESET = SubResource( 6 )
 anims/default = SubResource( 4 )
+anims/fadein = SubResource( 7 )
+anims/fadeout = SubResource( 8 )
 anims/inscreen = SubResource( 5 )
 anims/offscreen = SubResource( 3 )
